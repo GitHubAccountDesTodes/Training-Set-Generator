@@ -11,25 +11,22 @@ import java.util.Vector;
 
 public class TextFileAdapter {
 	
-	public static final String relativOutputPath = "";
-	private String absolutProjectPath;
-	private String absolutOutputPath;
-	private String absolutTextFilePath;
+	public static final String relativOutputPath = "Training Sets/txt/";
+	private static String absolutProjectPath;
+	private static String absolutOutputPath;
 	
-	public TextFileAdapter() {
-		absolutProjectPath = new File("").getAbsolutePath();
+	public static void initializeAdapter() {
+		absolutProjectPath = new File("").getAbsolutePath() + "/";
 		absolutOutputPath = absolutProjectPath + relativOutputPath;
-		absolutTextFilePath = "";
 	}
 	
-	public boolean createTextFile(String name) {
-		File file = new File(absolutOutputPath+"/"+name);
+	public static boolean createTextFile(String fileName) {
+		File file = new File(absolutOutputPath+fileName);
 		
         if (file != null) {
             try {
                 file.createNewFile();
-                absolutTextFilePath = file.getAbsolutePath();
-                System.out.println("Created: "+absolutTextFilePath);
+                System.out.println("Created: "+file.getAbsolutePath());
             } catch (IOException e) {
                 System.err.println("Error creating " + file.toString());
             }
@@ -39,30 +36,30 @@ public class TextFileAdapter {
         return false;
     }
 	
-	public void writeTextFile(String name, String text) {			
+	public static void writeTextFile(String fileName, String text) {			
 		PrintWriter out = null;
-		File file = new File(absolutOutputPath+"/"+name);
+		File file = new File(absolutOutputPath+fileName);
 		try {
 			out = new PrintWriter(file);
 			System.out.println("Written: "+file.getAbsolutePath());
 			out.println(text);
 			out.close();
 		} catch (FileNotFoundException e) {
-			System.err.println("Error init print writer");
+			System.err.println("Error init print writer\nLocation: "+file.getAbsolutePath());
 		}
 	}
 	
-	public Vector<String> readTextFile(String name) {
+	public static String readTextFile(String fileName) {
 		String line = null;
-        Vector<String> lines = new Vector<String>();
+        String lines = null;
 
         try {
-            FileReader fileReader = new FileReader(name);
+            FileReader fileReader = new FileReader(relativOutputPath+fileName);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-            	lines.add(line);
+            	lines += line;
                 System.out.println(line);
             }  
             bufferedReader.close();            
@@ -70,18 +67,18 @@ public class TextFileAdapter {
         
         catch(FileNotFoundException ex) {
             System.out.println(
-                "Unable to open file '"+name+"'");
+                "Unable to open file '"+fileName+"'");
         }
         catch(IOException ex) {
             System.out.println(
-                "Error reading file '"+name+"'");
+                "Error reading file '"+fileName+"'");
         }
         return lines;
     }
 	
-	public void clearTextFile(String name) {
+	public static void clearTextFile(String fileName) {
 		FileWriter writer = null;
-		File file = new File(absolutOutputPath+"/"+name);
+		File file = new File(absolutOutputPath+fileName);
 		try {
 			writer = new FileWriter(file);
 		} catch (IOException e) {
