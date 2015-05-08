@@ -4,16 +4,15 @@ import pj.generator.*;
 import pj.ui.NNVisualisation;
 
 public class Main {
-	public TrainingSetGenerator trainingSetGenerator;
+	public TrainingSets trainingSets;
 	public NNVisualisation nNVisualisation;
 
 	public Main() {
-		trainingSetGenerator = new TrainingSetGenerator();
+		trainingSets = new TrainingSets();
 		nNVisualisation = new NNVisualisation(this);
 	}
 	
 	public static void main(String[] args) {
 		new Main();
 	}
-
 }

@@ -5,13 +5,13 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
-public class TrainingSetGenerator {
+public class TrainingSets {
 	
 	public static final String twoBoxesFileName = "twoBoxes.png";
 	public BufferedImage twoBoxesImage;
 	public int[][] twoBoxesRGBSet;
 	
-	public TrainingSetGenerator() {
+	public TrainingSets() {
 		initialize();
 		generate();
 	}

@@ -19,8 +19,8 @@ public class NNVisualisation extends JPanel {
 	
 	public NNVisualisation(Main main) {
 		this.main = main;
-		this.image = main.trainingSetGenerator.twoBoxesImage;
-		this.imageRGB = main.trainingSetGenerator.twoBoxesRGBSet;
+		this.image = main.trainingSets.twoBoxesImage;
+		this.imageRGB = main.trainingSets.twoBoxesRGBSet;
 		this.frame_width = this.image.getWidth();
 		this.frame_height = this.image.getHeight();
 		
